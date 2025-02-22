@@ -14,7 +14,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 ])
 
 # Argument parser
-parser = argparse.ArgumentParser(description="Train Test Split for VNDALE v2")
+parser = argparse.ArgumentParser(description="Train Test Split for VNDALE v1")
 parser.add_argument("--window_size", type=int, default=1800, help="Window size for RMS calculation")
 args = parser.parse_args()
 window_size = args.window_size

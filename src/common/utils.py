@@ -33,8 +33,20 @@ def sort_filenames(filenames, index):
     return sorted_filenames
     
 def extract_features(filename):
-    # Extract the features part from the filename (e.g., "rf_[Irms, P, ...]_" -> [Irms, P, ...])
-    return ast.literal_eval(filename.split("_")[1].split(".")[0])
+    # Assuming the filename is in the format: prefix_['feature1', 'feature2', ...].extension,
+    # we extract the substring between the first underscore and the first period.
+    start_idx = filename.find("_")
+    end_idx = filename.find(".", start_idx)
+    if start_idx == -1 or end_idx == -1:
+        raise ValueError("Filename format is incorrect")
+    features_str = filename[start_idx+1:end_idx]
+    # Convert the string representation of the list into an actual list
+    if features_str == "[Irms]":
+        return ["Irms"]
+    elif features_str == "[P]":
+        return ["P"]
+    features = ast.literal_eval(features_str)
+    return features
 
 def extract_model_name(filename):
     return filename.split("/")[-1].split(".")[0]

@@ -209,22 +209,24 @@ class ModelEvaluation:
             if len(indices) == 0:
                 result = {
                     'class_name': cls,
-                    'number_of_samples': len(indices),
                     'f1_score': f1_scores[i],
+                    'accuracy': 0,
+                    'number_of_samples': len(indices),
                     'most_error_class': None,
                     'most_error_count': 0,
+                    'most_error_percentage_wrt_class': 0,
                     'most_error_percentage_wrt_total_error': 0,
-                    'most_error_percentage_wrt_class': 0
                 }
             else: 
                 result = {
                     'class_name': cls,
-                    'number_of_samples': len(indices),
                     'f1_score': f1_scores[i],
+                    'accuracy': (len(indices) - num_errors) / len(indices),
+                    'number_of_samples': len(indices),
                     'most_error_class': most_error_class_name,
                     'most_error_count': most_error_count,
+                    'most_error_percentage_wrt_class': most_error_count / len(indices),
                     'most_error_percentage_wrt_total_error': most_error_percentage,
-                    'most_error_percentage_wrt_class': most_error_count / len(indices) * 100
                 }
             results.append(result)
 
