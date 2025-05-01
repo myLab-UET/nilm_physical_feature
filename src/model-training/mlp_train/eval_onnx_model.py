@@ -85,14 +85,15 @@ print(f"[+] Evaluation with model path: {onnx_model_path}")
 
 # Loading the data
 print("[+] Loading data:")
-if dataset_name == "vndale1":
-    validation_df = get_vndale1_data(data_type, window_size, is_norm)
-elif dataset_name == "iawe":
-    validation_df = get_iawe_data(data_type, is_norm)
-elif dataset_name == "rae":
-    validation_df = get_rae_data(data_type, is_norm)
-else:
-    raise ValueError("Invalid dataset name!")
+# if dataset_name == "vndale1":
+#     validation_df = get_vndale1_data(data_type, window_size, is_norm)
+# elif dataset_name == "iawe":
+#     validation_df = get_iawe_data(data_type, is_norm)
+# elif dataset_name == "rae":
+#     validation_df = get_rae_data(data_type, is_norm)
+# else:
+    # raise ValueError("Invalid dataset name!")
+validation_df = pd.read_csv("/opt/nilm-shared-data/nilm_device_detection/VNDALE_v1/real_life_test/vndale1_test_sample_1.csv")
 print(validation_df.head())
 
 # Transform X_train and X_val to numpy
@@ -113,7 +114,7 @@ onnx_session = ort.InferenceSession(onnx_model_path)
 
 # Train and validation dataloaders
 val_dataDataset = TensorDataset(X_val, y_val)
-val_loader = DataLoader(val_dataDataset, batch_size=eval_batch_size, shuffle=True, drop_last=False, num_workers=12, pin_memory=True, persistent_workers=True)
+val_loader = DataLoader(val_dataDataset, batch_size=1, shuffle=True, drop_last=False, num_workers=12, pin_memory=True, persistent_workers=True)
 
 # Evaluate model
 label_encoder = get_label_encoder(dataset_name)
@@ -125,9 +126,9 @@ val_recall = recall_score(y_true=all_y_true, y_pred=all_y_pred, average='weighte
 logging.info(f"[+] ONNX results: {model_name} with {data_type} data")
 logging.info(f"[+] {data_type} accuracy: {val_accuracy}, F1-Score: {val_f1_macro}, Precision: {val_precision}, Recall: {val_recall}")
 
-# report = classification_report(all_y_true, all_y_pred, target_names=label_encoder.classes_)
-# logging.info(f"{report}")
+report = classification_report(all_y_true, all_y_pred, target_names=label_encoder.classes_)
+logging.info(f"{report}")
 
 # Report most error classes
-# report_df = model_eval.report_most_error_each_class(y_true=all_y_true, y_pred=all_y_pred, label_encoder=label_encoder)
-# report_df.to_csv(f"{log_path}/{model_name}_error_report_{data_type}.csv", index=False)
+report_df = model_eval.report_most_error_each_class(y_true=all_y_true, y_pred=all_y_pred, label_encoder=label_encoder)
+report_df.to_csv(f"{log_path}/{model_name}_error_report_{data_type}.csv", index=False)
