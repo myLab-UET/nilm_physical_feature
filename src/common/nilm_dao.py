@@ -7,10 +7,9 @@ import os
 from tqdm import tqdm
 from joblib import load, dump
 
-VNDALE2_PATH = "/opt/nilm-shared-data/nilm_device_detection/VNDALE_v2"
-VNDALE1_PATH = "/opt/nilm-shared-data/nilm_device_detection/VNDALE_v1"
-IAWE_PATH    = "/opt/nilm-shared-data/nilm_device_detection/iawe"
-RAE_PATH     = "/opt/nilm-shared-data/nilm_device_detection/RAE"
+VNDALE1_PATH = "<path_to_data>/VNDALE_v1"
+IAWE_PATH    = "<path_to_data>/iawe"
+RAE_PATH     = "<path_to_data>/RAE"
 
 def get_label_encoder(dataset)->LabelEncoder:
     if dataset == "vndale1":
@@ -24,18 +23,6 @@ def get_label_encoder(dataset)->LabelEncoder:
     label_encoder = LabelEncoder()
     label_encoder.classes_ = np.load(label_encoder_path, allow_pickle=True)
     return label_encoder
-
-def get_vndale2_data(data_type, rms_window_size) -> pl.DataFrame:
-    data_dir = f"{VNDALE2_PATH}/RMS_window_rand/window_{rms_window_size}/{data_type}"
-    all_data_df = None
-    for csv_file in tqdm(os.listdir(data_dir), desc=f"Getting {data_type} data - window size: {rms_window_size}"):
-        if csv_file.endswith(".csv"):
-            data_df = pl.read_csv(f"{data_dir}/{csv_file}")
-            if all_data_df is None:
-                all_data_df = data_df
-            else:
-                all_data_df = pl.concat([all_data_df, data_df], how="vertical")
-    return all_data_df
 
 def get_vndale1_data(data_type, rms_window_size, is_norm=False) -> pl.DataFrame:
     # Get the data

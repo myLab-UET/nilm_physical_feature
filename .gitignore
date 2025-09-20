@@ -1,3 +1,6 @@
+# Remove unnecessary files
 .env
 results/*
 .vscode/*
+*.code-workspace
+**/__pycache__/

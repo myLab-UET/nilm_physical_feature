@@ -21,7 +21,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--data", type=str, required=True, default="vndale1", help="Dataset to train")
 parser.add_argument("--is_norm", required=True, type=lambda x: (str(x).lower() in ['true', '1']), default=False, help="Normalization flag")
 parser.add_argument("--window", type=int, default=1800, help="Size of the RMS window, only for VNDALE1 and VNDALE2")
-parser.add_argument("--n_folds", type=int, default=5, help="Number of folds for cross-validation")
+parser.add_argument("--n_folds", type=int, default=4, help="Number of folds for cross-validation")
 args = parser.parse_args()
 
 print(f"Arguments: {args}")
@@ -45,18 +45,18 @@ else:
 
 # Feature sets and hyperparameters
 feature_combs = [
-    # ['Irms'],
-    # ['P'],
-    # ['Irms', 'P'],
-    # ['Irms', 'P', 'MeanPF'],
-    # ['Irms', 'P', 'MeanPF', 'S'],
+    ['Irms'],
+    ['P'],
+    ['Irms', 'P'],
+    ['Irms', 'P', 'MeanPF'],
+    ['Irms', 'P', 'MeanPF', 'S'],
     ['Irms', 'P', 'MeanPF', 'S', 'Q'],
 ]
 
 hyperparameters_set = {
     "rf": {
-        "n_estimators": 15, "max_depth": 25,
-        "random_state": 42, "n_jobs": 2, "verbose": 0
+        "n_estimators": 15, "max_depth": 20,
+        "random_state": 42, "n_jobs": 12, "verbose": 0
     },
     "xgb": {
         "n_estimators": 15, "max_depth": 20,
