@@ -1,6 +1,6 @@
 import sys
-PROJECT_PATH = "/home/mrcong/Code/mylab-nilm-files/nilm-physical-features"
-sys.path.append("/home/mrcong/Code/mylab-nilm-files/nilm-physical-features/src/common")
+PROJECT_PATH = "<your_path>"
+sys.path.append("<your_path>/src/common")
 
 from sklearn.ensemble import RandomForestClassifier
 from xgboost import XGBClassifier

@@ -5,7 +5,7 @@ from sklearn.model_selection import KFold
 from sklearn.metrics import f1_score, accuracy_score
 import time
 import sys
-PROJECT_PATH = "/home/mrcong/Code/mylab-nilm-files/nilm-physical-features"
+PROJECT_PATH = "<your_path>"
 sys.path.append(f"{PROJECT_PATH}/src/common")
 from nilm_dao import *
 

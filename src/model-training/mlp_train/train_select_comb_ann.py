@@ -4,7 +4,7 @@ import polars as pl
 from sklearn.preprocessing import LabelEncoder
 import time
 import sys
-PROJECT_PATH = "/home/mrcong/Code/mylab-nilm-files/nilm-physical-features"
+PROJECT_PATH = "<your_path>"
 sys.path.append(f"{PROJECT_PATH}/src/common")
 from nilm_dao import *
 
