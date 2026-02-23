@@ -1,1 +1,0 @@
-The detailed deployments and code for ESP32 will be introduced soon!

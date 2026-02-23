@@ -17,8 +17,7 @@ This repository contains the official implementation of **"CPFD: Robust NILM Cla
   - [Training MLP Models](#training-mlp-models)
   - [Training Sequence Models](#training-sequence-models)
   - [Model Evaluation](#model-evaluation)
-- [Configuration](#configuration)
-- [Results](#results)
+- [Configuration](#configuration)  - [Microcontroller Deployment](#microcontroller-deployment)- [Results](#results)
 - [Citation](#citation)
 - [License](#license)
 - [Contact](#contact)
@@ -253,6 +252,18 @@ python train_sklearn_models.py --dataset iawe
 bash train_sklearn_kfold.sh
 ```
 
+### Setup and Usage
+
+1.  **Flash Firmware**:
+    - Open `src/microcontroller_deployment/ICTA_winter.ino` in Arduino IDE.
+    - Install required libraries.
+    - Upload the sketch to your ESP32.
+
+2.  **Run Test Script**:
+    - The `src/microcontroller_deployment/esp_com.py` script sends test samples from `test_df.csv` to the ESP32 via serial.
+    - Update the `port` variable in the script (e.g., `COM9` or `/dev/ttyUSB0`).
+    - Run: `python src/microcontroller_deployment/esp_com.py`
+
 ## ⚙️ Configuration
 
 ### Hyperparameters
@@ -287,6 +298,15 @@ View training progress with TensorBoard:
 tensorboard --logdir results/tensorboard
 ```
 
+## 🚀 Microcontroller Deployment
+
+The repository includes code to deploy the trained MLP model onto an ESP32 microcontroller using TensorFlow Lite for Microcontrollers.
+
+### Hardware & Software
+- **Hardware**: ESP32 Development Board.
+- **Software**: Arduino IDE or PlatformIO.
+- **Dependencies**: `EloquentTinyML`, `tflm_esp32` Arduino libraries.
+
 <!-- ## 📝 Citation
 
 If you use this code or dataset in your research, please cite our paper:
@@ -294,7 +314,7 @@ If you use this code or dataset in your research, please cite our paper:
 ```bibtex
 @article{cpfd2025,
   title={CPFD: Robust NILM Classification with Deep Neural Networks Using Combinative Physical Features for Complex and Low-Power Devices},
-  author={Your Name and Co-authors},
+  author={Nguyen Ngoc An, Nguyen Thanh Cong, Nguyen Ngoc Hoa},
   journal={Journal Name},
   year={2025}
 }
