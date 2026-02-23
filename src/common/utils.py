@@ -6,6 +6,11 @@ import os
 import logging
 from datetime import datetime
 
+RESULT_DIR="<please specify the result directory>"
+DATA_DIR="<please specify the data directory>"
+SRC_DIR="<please specify the source directory>"
+SEED=42
+
 def count_labels(labels, isPercentage=False):
     unique_labels, counts = np.unique(labels, return_counts=True)
     if isPercentage:

@@ -7,9 +7,10 @@ import os
 from tqdm import tqdm
 from joblib import load, dump
 
-VNDALE1_PATH = "<path_to_data>/VNDALE_v1"
-IAWE_PATH    = "<path_to_data>/iawe"
-RAE_PATH     = "<path_to_data>/RAE"
+SOURCE_PATH = "/opt/nilm-shared-data/nilm_device_detection"
+VNDALE1_PATH = f"{SOURCE_PATH}/VNDALE_v1"
+IAWE_PATH    = f"{SOURCE_PATH}/iawe"
+RAE_PATH     = f"{SOURCE_PATH}/RAE"
 
 def get_label_encoder(dataset)->LabelEncoder:
     if dataset == "vndale1":

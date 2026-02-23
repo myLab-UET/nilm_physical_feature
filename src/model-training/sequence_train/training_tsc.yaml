@@ -1,0 +1,41 @@
+fcn:
+  iawe:
+    epochs: 25
+    batch_size: 128
+    learning_rate: 0.001
+  vndale1:
+    epochs: 300
+    batch_size: 128
+    learning_rate: 0.0011
+  rae:
+    epochs: 25
+    batch_size: 128
+    learning_rate: 0.001
+
+resnet:
+  iawe:
+    epochs: 25
+    batch_size: 128
+    learning_rate: 0.001
+  vndale-1:
+    epochs: 300
+    batch_size: 64
+    learning_rate: 0.001
+  rae:
+    epochs: 25
+    batch_size: 128
+    learning_rate: 0.001
+
+transformer:
+  iawe:
+    epochs: 25
+    batch_size: 128
+    learning_rate: 0.001
+  vndale-1:
+    epochs: 300
+    batch_size: 64
+    learning_rate: 0.001
+  rae:
+    epochs: 25
+    batch_size: 128
+    learning_rate: 0.001
