@@ -133,7 +133,7 @@ DATA_DIR/sequence_data
 
 ### Download
 
-The VNDALE1 dataset is publicly available at: [https://bit.ly/vndale1-dataset](https://bit.ly/vndale1-dataset)
+The VNDALE1 dataset is publicly available at: [VN-DALE1 Dataset](https://tngnemo-my.sharepoint.com/:f:/g/personal/levels1912_tngnemo_onmicrosoft_com/IgDSsiwOdNnuQ73QA-Mftj73AW1vluyVuiok944yBa0n8r4?e=5DMSzF)
 
 For iAWE and RAE datasets, please refer to their respective publications:
 - iAWE dataset: https://iawe.github.io/
